@@ -92,3 +92,14 @@ DROP TABLE Comments;
 --Reseed Comments table to start from 1
 DBCC CHECKIDENT ('Comments', RESEED, 1);
 
+
+-- Drop the existing foreign key constraint
+ALTER TABLE Todos
+DROP CONSTRAINT FK__Todos__user_id__76969D2E;
+
+-- Recreate it with ON DELETE CASCADE
+ALTER TABLE Todos
+ADD CONSTRAINT FK_Todos_user_id
+FOREIGN KEY (user_id) REFERENCES Users(userid)
+ON DELETE CASCADE;
+

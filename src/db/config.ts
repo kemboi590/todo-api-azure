@@ -33,7 +33,7 @@ export const config = {
         },
         options: {
             encrypt: true, // for azure
-            trustServerCertificate: true // Change to true for local dev / self-signed certs
+            trustServerCertificate: false // Change to true for local dev / self-signed certs
         }
     }
 };
