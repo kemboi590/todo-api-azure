@@ -38,7 +38,7 @@ export const AddTodoController = async (req: Request, res: Response) => {
 export const getTodos = async (req: Request, res: Response) => {
     try {
         const todos = await todoServices.listTodos();
-        res.status(200).json({data: todos});
+        res.status(200).json({ data: todos });
     } catch (error: any) {
         res.status(500).json({ error: error.message });
     }
@@ -46,7 +46,7 @@ export const getTodos = async (req: Request, res: Response) => {
 
 //get todo by id
 export const getTodoById = async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string as string);
     try {
         const todo = await todoServices.getTodo(id);
         if (todo) {
@@ -72,7 +72,7 @@ export const createTodo = async (req: Request, res: Response) => {
 
 //update a todo
 export const updateTodo = async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string as string);
     const todo = req.body;
     console.log("controller", req.body);
     //badrequest if id is not a number
@@ -97,7 +97,7 @@ export const updateTodo = async (req: Request, res: Response) => {
 
 //delete a todo
 export const deleteTodo = async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string as string);
     //badrequest if id is not a number
     if (isNaN(id)) {
         return res.status(400).json({ message: 'Invalid user id' });

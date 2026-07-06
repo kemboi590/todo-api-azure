@@ -15,7 +15,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
 
 //get user by id    
 export const getUserById = async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string);
     try {
         const user = await userServices.getUser(id);
         if (user) {
@@ -64,7 +64,7 @@ export const verifyUser = async (req: Request, res: Response) => {
 
 //update a user
 export const updateUser = async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string);
 
     //badrequest if id is not a number
     if (isNaN(id)) {
@@ -88,7 +88,7 @@ export const updateUser = async (req: Request, res: Response) => {
 
 
 export const updateUserRole = async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string);
 
     //badrequest if id is not a number
     if (isNaN(id)) {
@@ -112,7 +112,7 @@ export const updateUserRole = async (req: Request, res: Response) => {
 }
 
 export const updateUserProfile = async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string);
 
     //badrequest if id is not a number
     if (isNaN(id)) {
@@ -135,7 +135,7 @@ export const updateUserProfile = async (req: Request, res: Response) => {
 }
 //delete a user
 export const deleteUser = async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string);
     //badrequest if id is not a number
     if (isNaN(id)) {
         return res.status(400).json({ message: 'Invalid user id' });
@@ -176,7 +176,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
 
 export const getUserWithTodos = async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string);
 
     if (isNaN(id)) {
         return res.status(400).json({ message: 'Invalid user id' });
